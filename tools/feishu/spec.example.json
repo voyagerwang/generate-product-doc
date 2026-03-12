@@ -1,0 +1,60 @@
+{
+  "docId": "docx_example_id",
+  "operations": [
+    {
+      "type": "replace-children",
+      "target": {
+        "blockId": "doxcnZEffsEk5ukEEeZGCjHQaPg"
+      },
+      "content": [
+        {
+          "type": "image",
+          "path": "/absolute/path/01_老师摄像头区.png"
+        },
+        {
+          "type": "feature-table",
+          "rows": [
+            {
+              "module": "示例模块",
+              "elements": [
+                {
+                  "title": "字段A，输入框，字段要求：必填。"
+                }
+              ],
+              "logic": [
+                {
+                  "title": "校验规则",
+                  "subs": [
+                    "字段A为空时不可提交。"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "append-subsections",
+      "target": {
+        "headingText": "5.3.7 聊天区与学员面板"
+      },
+      "sections": [
+        {
+          "title": "5.3.7.1 聊天区",
+          "headingLevel": 3,
+          "content": [
+            {
+              "type": "image",
+              "path": "/absolute/path/02_聊天区.png"
+            },
+            {
+              "type": "feature-table",
+              "rows": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
