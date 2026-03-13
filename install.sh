@@ -3,11 +3,11 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET="auto"
-SKILL_NAME="generate-product-doc-2"
+SKILL_NAME="generate-product-doc"
 CODEX_DIR="${CODEX_HOME:-$HOME/.codex}/skills"
 CLAUDE_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 TRAE_DIR="${TRAE_HOME:-$HOME/.trae}/adapters"
-APP_HOME="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc-2}"
+APP_HOME="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc}"
 TOOLKIT_DIR="$APP_HOME/tools/feishu"
 ENV_FILE="$APP_HOME/.env"
 ENV_EXAMPLE_FILE="$APP_HOME/.env.example"
@@ -58,12 +58,12 @@ ensure_env_files() {
 }
 
 install_codex() {
-  copy_dir "$ROOT_DIR/codex/generate-product-doc-2" "$CODEX_DIR/$SKILL_NAME"
+  copy_dir "$ROOT_DIR/codex/generate-product-doc" "$CODEX_DIR/$SKILL_NAME"
   echo "Installed Codex skill to: $CODEX_DIR/$SKILL_NAME"
 }
 
 install_claude() {
-  copy_dir "$ROOT_DIR/claude-code/generate-product-doc-2" "$CLAUDE_DIR/$SKILL_NAME"
+  copy_dir "$ROOT_DIR/claude-code/generate-product-doc" "$CLAUDE_DIR/$SKILL_NAME"
   echo "Installed Claude Code skill to: $CLAUDE_DIR/$SKILL_NAME"
 }
 

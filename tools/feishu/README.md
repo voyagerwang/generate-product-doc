@@ -12,11 +12,11 @@
 安装脚本会自动创建：
 
 ```bash
-~/.generate-product-doc-2/.env
-~/.generate-product-doc-2/.env.example
+~/.generate-product-doc/.env
+~/.generate-product-doc/.env.example
 ```
 
-默认从 `~/.generate-product-doc-2/.env` 读取配置，也支持 shell 环境变量覆盖。
+默认从 `~/.generate-product-doc/.env` 读取配置，也支持 shell 环境变量覆盖。
 
 填写：
 

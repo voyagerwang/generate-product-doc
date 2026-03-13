@@ -1,4 +1,4 @@
-# generate-product-doc-2-public
+# generate-product-doc
 
 通用化产品文档生成技能公开版。
 
@@ -25,7 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/ma
 说明：
 1. `Codex / Claude Code` 安装为原生 skill。
 2. `Trae` 安装为适配包，脚本会复制 `prompt.txt` 与 `rules/` 到适配目录；后续是否自动生效取决于 Trae 版本与本地配置，必要时仍需手动接入自定义 Agent 或 Project Rules。
-3. 安装时会自动创建 `~/.generate-product-doc-2/.env` 与 `~/.generate-product-doc-2/.env.example`，用于填写飞书配置。
+3. 安装时会自动创建 `~/.generate-product-doc/.env` 与 `~/.generate-product-doc/.env.example`，用于填写飞书配置。
 
 显式指定目标：
 
@@ -44,7 +44,7 @@ bash install.sh --target all
 侧装测试，不覆盖现有同名技能：
 
 ```bash
-bash install.sh --target codex --name generate-product-doc-2-public
+bash install.sh --target codex --name generate-product-doc-public
 ```
 
 ## 安装结果
@@ -84,8 +84,8 @@ $CODEX_HOME/skills/<skill-name>
 安装后会自动创建：
 
 ```bash
-~/.generate-product-doc-2/.env
-~/.generate-product-doc-2/.env.example
+~/.generate-product-doc/.env
+~/.generate-product-doc/.env.example
 ```
 
 仓库根目录也提供 `.env.example` 作为模板参考。
@@ -121,14 +121,14 @@ tools/feishu/
 ## 仓库结构
 
 ```text
-generate-product-doc-2-public/
+generate-product-doc/
 ├── README.md
 ├── install.sh
 ├── uninstall.sh
 ├── codex/
-│   └── generate-product-doc-2/
+│   └── generate-product-doc/
 ├── claude-code/
-│   └── generate-product-doc-2/
+│   └── generate-product-doc/
 ├── trae/
 │   ├── prompt.txt
 │   ├── README.md
@@ -152,15 +152,15 @@ generate-product-doc-2-public/
 常见用法：
 
 ```text
-[$generate-product-doc-2] 读取 /path/to/project-docs，按目录中的样本风格输出完整 PRD 到飞书文档。
-[$generate-product-doc-2] 读取 /path/to/project-docs，生成本地 docx 产品文档。
-[$generate-product-doc-2] 基于现有飞书文档补写 5.3.6 老师摄像头区、5.3.7.1 聊天区、5.3.7.3 学员列表。
+[$generate-product-doc] 读取 /path/to/project-docs，按目录中的样本风格输出完整 PRD 到飞书文档。
+[$generate-product-doc] 读取 /path/to/project-docs，生成本地 docx 产品文档。
+[$generate-product-doc] 基于现有飞书文档补写 5.3.6 老师摄像头区、5.3.7.1 聊天区、5.3.7.3 学员列表。
 ```
 
 飞书模式缺少配置时，技能应引导用户编辑：
 
 ```text
-~/.generate-product-doc-2/.env
+~/.generate-product-doc/.env
 ```
 
 资料目录建议结构：
