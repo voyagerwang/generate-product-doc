@@ -19,7 +19,7 @@
 默认自动检测本机常见目录并安装：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<your-org>/<your-repo>/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/main/install.sh | bash
 ```
 
 说明：
@@ -29,9 +29,9 @@ curl -fsSL https://raw.githubusercontent.com/<your-org>/<your-repo>/main/install
 显式指定目标：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<your-org>/<your-repo>/main/install.sh | bash -s -- --target codex
-curl -fsSL https://raw.githubusercontent.com/<your-org>/<your-repo>/main/install.sh | bash -s -- --target claude
-curl -fsSL https://raw.githubusercontent.com/<your-org>/<your-repo>/main/install.sh | bash -s -- --target trae
+curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/main/install.sh | bash -s -- --target codex
+curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/main/install.sh | bash -s -- --target claude
+curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/main/install.sh | bash -s -- --target trae
 ```
 
 并行安装多个目标：
