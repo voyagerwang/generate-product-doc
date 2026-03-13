@@ -11,6 +11,7 @@ APP_HOME="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc}"
 TOOLKIT_DIR="$APP_HOME/tools/feishu"
 ENV_FILE="$APP_HOME/.env"
 ENV_EXAMPLE_FILE="$APP_HOME/.env.example"
+DOCS_TEMPLATE_DIR="$APP_HOME/project-docs-template"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -57,6 +58,32 @@ ensure_env_files() {
   echo "Env example: $ENV_EXAMPLE_FILE"
 }
 
+ensure_docs_template() {
+  mkdir -p "$DOCS_TEMPLATE_DIR/examples"
+  mkdir -p "$DOCS_TEMPLATE_DIR/screenshots"
+  mkdir -p "$DOCS_TEMPLATE_DIR/prototype"
+
+  [[ -f "$DOCS_TEMPLATE_DIR/rules.md" ]] || cat > "$DOCS_TEMPLATE_DIR/rules.md" <<'EOF'
+# 文档规则
+
+1. 在这里补充你的文档结构、排版、术语和硬约束。
+EOF
+
+  [[ -f "$DOCS_TEMPLATE_DIR/glossary.md" ]] || cat > "$DOCS_TEMPLATE_DIR/glossary.md" <<'EOF'
+# 术语表
+
+- 在这里补充业务术语、缩略词和角色定义。
+EOF
+
+  [[ -f "$DOCS_TEMPLATE_DIR/scope.md" ]] || cat > "$DOCS_TEMPLATE_DIR/scope.md" <<'EOF'
+# 页面范围
+
+1. 在这里列出本次需要生成文档的页面、弹窗和模块。
+EOF
+
+  echo "Project docs template: $DOCS_TEMPLATE_DIR"
+}
+
 install_codex() {
   copy_dir "$ROOT_DIR/codex/generate-product-doc" "$CODEX_DIR/$SKILL_NAME"
   echo "Installed Codex skill to: $CODEX_DIR/$SKILL_NAME"
@@ -76,6 +103,7 @@ install_toolkit() {
   copy_dir "$ROOT_DIR/tools/feishu" "$TOOLKIT_DIR"
   echo "Installed Feishu toolkit to: $TOOLKIT_DIR"
   ensure_env_files
+  ensure_docs_template
 }
 
 case "$TARGET" in
@@ -125,3 +153,4 @@ esac
 
 echo "Done."
 echo "If you want to write Feishu docs, edit: $ENV_FILE"
+echo "Put your reference docs here (or follow the same structure in any local folder): $DOCS_TEMPLATE_DIR"

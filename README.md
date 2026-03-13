@@ -26,6 +26,7 @@ curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/ma
 1. `Codex / Claude Code` 安装为原生 skill。
 2. `Trae` 安装为适配包，脚本会复制 `prompt.txt` 与 `rules/` 到适配目录；后续是否自动生效取决于 Trae 版本与本地配置，必要时仍需手动接入自定义 Agent 或 Project Rules。
 3. 安装时会自动创建 `~/.generate-product-doc/.env` 与 `~/.generate-product-doc/.env.example`，用于填写飞书配置。
+4. 安装时会自动创建资料目录模板：`~/.generate-product-doc/project-docs-template/`，用于放样本文档、截图、原型和规则文件。
 
 显式指定目标：
 
@@ -166,7 +167,7 @@ generate-product-doc/
 资料目录建议结构：
 
 ```text
-project-docs/
+~/.generate-product-doc/project-docs-template/
 ├── examples/
 ├── screenshots/
 ├── prototype/
@@ -174,6 +175,17 @@ project-docs/
 ├── glossary.md
 └── scope.md
 ```
+
+说明：
+1. 你可以直接把资料放进 `~/.generate-product-doc/project-docs-template/`。
+2. 也可以自己新建任意本地目录，只要保持同样结构即可。
+3. 常见放法：
+   - `examples/`：历史高质量 PRD、模块说明、风格样本
+   - `screenshots/`：页面截图、弹窗截图、长图
+   - `prototype/`：原型源码、入口 HTML、页面链接说明
+   - `rules.md`：本次文档的硬约束
+   - `glossary.md`：术语表
+   - `scope.md`：本次覆盖页面范围
 
 ### Trae
 将以下资源接入你的自定义 Agent：
