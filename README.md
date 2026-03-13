@@ -131,11 +131,37 @@ generate-product-doc-2-public/
 读取 /path/to/project-docs，按资料目录中的样本/示例风格输出完整 PRD 到飞书。
 ```
 
+常见用法：
+
+```text
+[$generate-product-doc-2] 读取 /path/to/project-docs，按目录中的样本风格输出完整 PRD 到飞书文档。
+[$generate-product-doc-2] 读取 /path/to/project-docs，生成本地 docx 产品文档。
+[$generate-product-doc-2] 基于现有飞书文档补写 5.3.6 老师摄像头区、5.3.7.1 聊天区、5.3.7.3 学员列表。
+```
+
+资料目录建议结构：
+
+```text
+project-docs/
+├── examples/
+├── screenshots/
+├── prototype/
+├── rules.md
+├── glossary.md
+└── scope.md
+```
+
 ### Trae
 将以下资源接入你的自定义 Agent：
 1. `trae/prompt.txt`
 2. `trae/rules/`
 3. `prompts/one-shot-prompt.txt`
+
+建议提示词：
+
+```text
+读取 /path/to/project-docs，先抽取样本文档风格，再按中后台 PRD 结构输出正式产品文档；若提供飞书文档链接则直接写入飞书，否则默认生成本地 docx。
+```
 
 ## 示例资产
 
