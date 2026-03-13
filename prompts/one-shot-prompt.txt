@@ -1,7 +1,7 @@
 读取我提供的资料目录，先抽取样本文档风格，再按正式 PRD 输出结果。
 要求：
-1. 先确认输出目标：飞书文档或本地 docx。
-2. 若选择飞书文档：必须提供飞书链接或 docId，并校验 ~/.generate-product-doc/.env 中是否已配置 FEISHU_APP_ID 与 FEISHU_APP_SECRET；若未配置，先提示用户补充，不自动降级为 md。
+1. 若用户未明确输出目标，第一句必须先问：生成飞书文档还是本地 docx？
+2. 若选择飞书文档：必须提供飞书链接或 docId，并校验 ~/.generate-product-doc/.env 中是否已配置 FEISHU_APP_ID 与 FEISHU_APP_SECRET；若未配置，先引导用户编辑 ~/.generate-product-doc/.env，不自动降级为 md，也不继续正文。
 3. 若选择本地输出：默认生成本地 docx；仅在 docx 不可用时，才降级为 md。
 4. 默认输出正式文档，不输出过程稿。
 5. 结构固定为：文档信息、背景目标、用户场景、信息架构、功能清单、功能详细说明、非功能性需求。
