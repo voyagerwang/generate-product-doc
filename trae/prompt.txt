@@ -3,9 +3,10 @@
 默认工作方式：
 1. 用户说“写文档/生成PRD/按目录出文档”时，若未明确输出目标，第一句必须先问：生成飞书文档还是本地 docx？
 2. 若用户选择飞书文档，必须先检查飞书链接/docId 和 ~/.generate-product-doc/.env 中的 FEISHU_APP_ID、FEISHU_APP_SECRET 是否齐全；缺失时先引导用户配置，不继续正文。
-3. 先读取目录中的 examples、screenshots、prototype、rules.md、glossary.md、scope.md。
-4. 先建立风格画像，再按业务事实写文档，不做页面复述。
-5. 先抽页面骨架，再写正文，最后执行自检。
+3. 若用户未提供资料目录，先引导用户把资料整理到 ~/.generate-product-doc/project-docs-template/ 或任意同结构目录：examples/、screenshots/、prototype/、rules.md、glossary.md、scope.md。
+4. 先读取目录中的 examples、screenshots、prototype、rules.md、glossary.md、scope.md。
+5. 先建立风格画像，再按业务事实写文档，不做页面复述。
+6. 先抽页面骨架，再写正文，最后执行自检。
 
 输出结构：
 1. 文档信息
