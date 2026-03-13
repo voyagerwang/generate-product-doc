@@ -9,11 +9,20 @@
 
 ## 环境变量
 
-执行前需要设置：
+安装脚本会自动创建：
 
 ```bash
-export FEISHU_APP_ID=your_app_id
-export FEISHU_APP_SECRET=your_app_secret
+~/.generate-product-doc-2/.env
+~/.generate-product-doc-2/.env.example
+```
+
+默认从 `~/.generate-product-doc-2/.env` 读取配置，也支持 shell 环境变量覆盖。
+
+填写：
+
+```bash
+FEISHU_APP_ID=your_app_id
+FEISHU_APP_SECRET=your_app_secret
 ```
 
 ## 核心脚本

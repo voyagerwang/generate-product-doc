@@ -7,7 +7,10 @@ SKILL_NAME="generate-product-doc-2"
 CODEX_DIR="${CODEX_HOME:-$HOME/.codex}/skills"
 CLAUDE_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 TRAE_DIR="${TRAE_HOME:-$HOME/.trae}/adapters"
-TOOLKIT_DIR="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc-2}/tools/feishu"
+APP_HOME="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc-2}"
+TOOLKIT_DIR="$APP_HOME/tools/feishu"
+ENV_FILE="$APP_HOME/.env"
+ENV_EXAMPLE_FILE="$APP_HOME/.env.example"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -42,6 +45,18 @@ copy_dir() {
   cp -R "$src" "$dst"
 }
 
+ensure_env_files() {
+  mkdir -p "$APP_HOME"
+  cp "$ROOT_DIR/.env.example" "$ENV_EXAMPLE_FILE"
+
+  if [[ ! -f "$ENV_FILE" ]]; then
+    cp "$ENV_EXAMPLE_FILE" "$ENV_FILE"
+    echo "Created env file: $ENV_FILE"
+  fi
+
+  echo "Env example: $ENV_EXAMPLE_FILE"
+}
+
 install_codex() {
   copy_dir "$ROOT_DIR/codex/generate-product-doc-2" "$CODEX_DIR/$SKILL_NAME"
   echo "Installed Codex skill to: $CODEX_DIR/$SKILL_NAME"
@@ -60,6 +75,7 @@ install_trae() {
 install_toolkit() {
   copy_dir "$ROOT_DIR/tools/feishu" "$TOOLKIT_DIR"
   echo "Installed Feishu toolkit to: $TOOLKIT_DIR"
+  ensure_env_files
 }
 
 case "$TARGET" in
@@ -108,3 +124,4 @@ case "$TARGET" in
 esac
 
 echo "Done."
+echo "If you want to write Feishu docs, edit: $ENV_FILE"
