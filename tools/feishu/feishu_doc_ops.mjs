@@ -1,19 +1,49 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
 export const API_BASE = 'https://open.feishu.cn/open-apis';
 const FETCH_TIMEOUT_MS = 30000;
 const RETRYABLE_CODES = new Set([99991400, 99991401, 99991663]);
 
+loadEnvFromDefaultLocation();
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function loadEnvFromDefaultLocation() {
+  const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc-2');
+  const envPath = path.join(appHome, '.env');
+  if (!fs.existsSync(envPath)) return;
+
+  const content = fs.readFileSync(envPath, 'utf8');
+  for (const rawLine of content.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const idx = line.indexOf('=');
+    if (idx <= 0) continue;
+    const key = line.slice(0, idx).trim();
+    let value = line.slice(idx + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"'))
+      || (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (!(key in process.env)) {
+      process.env[key] = value;
+    }
+  }
 }
 
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc-2');
+    throw new Error(`Missing required environment variable: ${name}. Configure it in ${path.join(appHome, '.env')} or export it in your shell.`);
   }
   return value;
 }

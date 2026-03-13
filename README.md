@@ -25,6 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/ma
 说明：
 1. `Codex / Claude Code` 安装为原生 skill。
 2. `Trae` 安装为适配包，脚本会复制 `prompt.txt` 与 `rules/` 到适配目录；后续是否自动生效取决于 Trae 版本与本地配置，必要时仍需手动接入自定义 Agent 或 Project Rules。
+3. 安装时会自动创建 `~/.generate-product-doc-2/.env` 与 `~/.generate-product-doc-2/.env.example`，用于填写飞书配置。
 
 显式指定目标：
 
@@ -78,11 +79,22 @@ $CODEX_HOME/skills/<skill-name>
 
 ## 飞书集成
 
-仓库内附带通用飞书局部更新工具，使用前需设置环境变量：
+仓库内附带通用飞书局部更新工具。
+
+安装后会自动创建：
 
 ```bash
-export FEISHU_APP_ID=your_app_id
-export FEISHU_APP_SECRET=your_app_secret
+~/.generate-product-doc-2/.env
+~/.generate-product-doc-2/.env.example
+```
+
+仓库根目录也提供 `.env.example` 作为模板参考。
+
+编辑 `.env` 填入：
+
+```env
+FEISHU_APP_ID=your_app_id
+FEISHU_APP_SECRET=your_app_secret
 ```
 
 工具目录：
@@ -98,6 +110,13 @@ tools/feishu/
 4. 追加子章节
 5. 写图片、表格、代码块和有序列表
 6. 写入后回读校验
+
+飞书输出前置条件：
+1. 用户明确选择输出到飞书文档。
+2. 已提供飞书文档链接或 `docId`。
+3. `.env` 中已配置 `FEISHU_APP_ID` 与 `FEISHU_APP_SECRET`。
+
+若缺少飞书目标或飞书配置，技能应先提示补充，不应自动降级为 `md`。
 
 ## 仓库结构
 
@@ -125,11 +144,10 @@ generate-product-doc-2-public/
 ## 使用方式
 
 ### Codex / Claude Code
-安装后可直接调用技能：
+安装后先确认输出目标：
 
-```text
-读取 /path/to/project-docs，按资料目录中的样本/示例风格输出完整 PRD 到飞书。
-```
+1. 输出到飞书文档
+2. 输出到本地 `docx`
 
 常见用法：
 
@@ -137,6 +155,12 @@ generate-product-doc-2-public/
 [$generate-product-doc-2] 读取 /path/to/project-docs，按目录中的样本风格输出完整 PRD 到飞书文档。
 [$generate-product-doc-2] 读取 /path/to/project-docs，生成本地 docx 产品文档。
 [$generate-product-doc-2] 基于现有飞书文档补写 5.3.6 老师摄像头区、5.3.7.1 聊天区、5.3.7.3 学员列表。
+```
+
+飞书模式缺少配置时，技能应引导用户编辑：
+
+```text
+~/.generate-product-doc-2/.env
 ```
 
 资料目录建议结构：
@@ -160,7 +184,7 @@ project-docs/
 建议提示词：
 
 ```text
-读取 /path/to/project-docs，先抽取样本文档风格，再按中后台 PRD 结构输出正式产品文档；若提供飞书文档链接则直接写入飞书，否则默认生成本地 docx。
+读取 /path/to/project-docs，先抽取样本文档风格，再按中后台 PRD 结构输出正式产品文档。先确认输出到飞书还是本地 docx；若选择飞书且缺少文档链接或 FEISHU_APP_ID / FEISHU_APP_SECRET，则先提示补充。
 ```
 
 ## 示例资产
