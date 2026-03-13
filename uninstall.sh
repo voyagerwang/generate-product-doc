@@ -2,11 +2,11 @@
 set -euo pipefail
 
 TARGET="all"
-SKILL_NAME="generate-product-doc-2"
+SKILL_NAME="generate-product-doc"
 CODEX_DIR="${CODEX_HOME:-$HOME/.codex}/skills/$SKILL_NAME"
 CLAUDE_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/$SKILL_NAME"
 TRAE_DIR="${TRAE_HOME:-$HOME/.trae}/adapters/$SKILL_NAME"
-TOOLKIT_DIR="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc-2}/tools/feishu"
+TOOLKIT_DIR="${GENERATE_PRODUCT_DOC_HOME:-$HOME/.generate-product-doc}/tools/feishu"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

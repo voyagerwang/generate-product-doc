@@ -15,7 +15,7 @@ function sleep(ms) {
 }
 
 function loadEnvFromDefaultLocation() {
-  const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc-2');
+  const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc');
   const envPath = path.join(appHome, '.env');
   if (!fs.existsSync(envPath)) return;
 
@@ -42,7 +42,7 @@ function loadEnvFromDefaultLocation() {
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) {
-    const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc-2');
+    const appHome = process.env.GENERATE_PRODUCT_DOC_HOME || path.join(os.homedir(), '.generate-product-doc');
     throw new Error(`Missing required environment variable: ${name}. Configure it in ${path.join(appHome, '.env')} or export it in your shell.`);
   }
   return value;

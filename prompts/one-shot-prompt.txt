@@ -9,5 +9,5 @@
 7. 避免不确定表达：待定、可选、视情况、A或B。
 8. 有明显分支判断或阻断校验时，补流程图。
 9. 先确认输出目标：飞书文档或本地 docx。
-10. 若选择飞书文档：必须提供飞书链接或 docId，并校验 ~/.generate-product-doc-2/.env 中是否已配置 FEISHU_APP_ID 与 FEISHU_APP_SECRET；若未配置，先提示用户补充。
+10. 若选择飞书文档：必须提供飞书链接或 docId，并校验 ~/.generate-product-doc/.env 中是否已配置 FEISHU_APP_ID 与 FEISHU_APP_SECRET；若未配置，先提示用户补充。
 11. 若选择本地输出：默认生成本地 docx；仅在 docx 不可用时，才降级为 md。

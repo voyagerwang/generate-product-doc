@@ -1,5 +1,5 @@
 ---
-name: generate-product-doc-2
+name: generate-product-doc
 description: 通用化产品文档生成技能。支持读取资料目录，先抽取用户文档风格，再按中后台PRD结构输出可落地功能说明，适配飞书或本地文档交付。
 metadata:
   short-description: 产品文档生成（公开版）

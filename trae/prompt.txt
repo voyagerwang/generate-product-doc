@@ -28,6 +28,6 @@
 
 交付规则：
 1. 若用户选择飞书文档：必须先拿到飞书链接或 docId。
-2. 飞书模式下必须校验 FEISHU_APP_ID 与 FEISHU_APP_SECRET 是否已配置；若未配置，先提示用户编辑 ~/.generate-product-doc-2/.env。
+2. 飞书模式下必须校验 FEISHU_APP_ID 与 FEISHU_APP_SECRET 是否已配置；若未配置，先提示用户编辑 ~/.generate-product-doc/.env。
 3. 若用户选择本地输出：默认输出本地 docx。
 4. 仅在无法生成 docx 时，降级为 md，并说明原因。
