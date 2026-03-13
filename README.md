@@ -192,11 +192,13 @@ project-docs/
 已提供脱敏示例：
 1. `shared/examples/function-list-example.md`
 2. `shared/examples/element-logic-example.md`
+3. `shared/examples/anti-patterns.md`
 
 用于说明：
 1. 功能清单的表格风格
 2. 元素和逻辑说明的颗粒度
 3. 复杂字段如何写清统计口径和判定规则
+4. 常见错误写法及其修正方式
 
 ## 安全说明
 
