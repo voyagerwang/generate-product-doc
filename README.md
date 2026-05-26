@@ -27,6 +27,7 @@ curl -fsSL https://raw.githubusercontent.com/voyagerwang/generate-product-doc/ma
 2. `Trae` 安装为适配包，脚本会复制 `prompt.txt` 与 `rules/` 到适配目录；后续是否自动生效取决于 Trae 版本与本地配置，必要时仍需手动接入自定义 Agent 或 Project Rules。
 3. 安装时会自动创建 `~/.generate-product-doc/.env` 与 `~/.generate-product-doc/.env.example`，用于填写飞书配置。
 4. 安装时会自动创建资料目录模板：`~/.generate-product-doc/project-docs-template/`，用于放样本文档、截图、原型和规则文件。
+5. 安装到 `Codex / Claude Code` 时会同步复制 `shared/examples/`，保证新线程也能读取示例和反例规则。
 
 显式指定目标：
 
@@ -119,6 +120,11 @@ tools/feishu/
 
 若缺少飞书目标或飞书配置，技能应先提示补充，不应自动降级为 `md`。
 
+已有飞书文档修改原则：
+1. 默认只做局部最小范围替换。
+2. 不能为了修改一行而删除并重建整张表、整章或整篇文档。
+3. 如果工具无法保证表格、图片、原生序号不被破坏，应输出可粘贴内容，由用户确认后再处理。
+
 ## 仓库结构
 
 ```text
@@ -205,12 +211,14 @@ generate-product-doc/
 1. `shared/examples/function-list-example.md`
 2. `shared/examples/element-logic-example.md`
 3. `shared/examples/anti-patterns.md`
+4. `shared/examples/update-safety-example.md`
 
 用于说明：
 1. 功能清单的表格风格
 2. 元素和逻辑说明的颗粒度
 3. 复杂字段如何写清统计口径和判定规则
 4. 常见错误写法及其修正方式
+5. 已有飞书文档局部修改时如何避免误删、串列和格式降级
 
 ## 安全说明
 

@@ -46,6 +46,14 @@ copy_dir() {
   cp -R "$src" "$dst"
 }
 
+copy_skill_examples() {
+  local dst="$1"
+  if [[ -d "$ROOT_DIR/shared/examples" ]]; then
+    mkdir -p "$dst/examples"
+    cp -R "$ROOT_DIR/shared/examples/." "$dst/examples/"
+  fi
+}
+
 ensure_env_files() {
   mkdir -p "$APP_HOME"
   cp "$ROOT_DIR/.env.example" "$ENV_EXAMPLE_FILE"
@@ -86,11 +94,13 @@ EOF
 
 install_codex() {
   copy_dir "$ROOT_DIR/codex/generate-product-doc" "$CODEX_DIR/$SKILL_NAME"
+  copy_skill_examples "$CODEX_DIR/$SKILL_NAME"
   echo "Installed Codex skill to: $CODEX_DIR/$SKILL_NAME"
 }
 
 install_claude() {
   copy_dir "$ROOT_DIR/claude-code/generate-product-doc" "$CLAUDE_DIR/$SKILL_NAME"
+  copy_skill_examples "$CLAUDE_DIR/$SKILL_NAME"
   echo "Installed Claude Code skill to: $CLAUDE_DIR/$SKILL_NAME"
 }
 
